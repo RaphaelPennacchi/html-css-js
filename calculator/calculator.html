@@ -1,0 +1,163 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div class="calculator">
+       <div id="display">0</div>
+       <div class="buttons" class=".container">
+           <div>
+                <div>
+                    <button class="keys" type="button" onclick="sum()">+</button>
+                    <button class="keys" type="button" onclick="subtract()">-</button>
+                    <button class="keys" type="button" onclick="multiply()">x</button>
+                    <button class="keys" type="button" onclick="divide()">/</button>
+                </div>
+                <div>
+                    <button class="keys" type="button" onclick="seven()">7</button>
+                    <button class="keys" type="button" onclick="eight()">8</button>
+                    <button class="keys" type="button" onclick="nine()">9</button>
+                </div>
+                <div>
+                    <button class="keys" type="button" onclick="four()">4</button>
+                    <button class="keys" type="button" onclick="five()">5</button>
+                    <button class="keys" type="button" onclick="six()">6</button>
+                </div>
+                <div>
+                    <button class="keys item-a" type="button" onclick="one()">1</button>
+                    <button class="keys" type="button" onclick="two()">2</button>
+                    <button class="keys" type="button" onclick="three()">3</button>
+                </div>
+                <div>
+                    <button class="keys" type="button" onclick="zero()">0</button>
+                    <button class="keys" type="button" onclick="dot()">.</button>
+                    <button class="keys" type="button" onclick="clearDisplay()">C</button>
+                </div>
+           </div>
+           <div>
+               <button id="equal"></button>
+           </div>
+       </div>
+   </div> 
+</body>
+</html>
+
+<style>
+    #display {
+        background-color: #252525;
+        border: 1px #252525 solid; 
+        border-radius: 10px 10px 0px 0px;
+        height: 80px;
+        width: 300px;
+        color: white;
+        text-align: right;
+        font-size: 33px;
+        vertical-align: middle;
+    }
+
+    .keys {
+        height: 20px;
+        width: 75px;
+        background-color: lightblue;
+        padding: 0px;
+        border: none;
+        margin: 0;
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 50px 50px 50px 50px;
+        grid-template-rows: auto;
+        grid-template-areas: 
+        "key-1 key-1"
+        "key-1 key-1";
+    }
+
+    .item-a {
+        grid-area: key-1;
+    }
+
+</style>
+
+<script>
+    function sum() {
+        
+    }
+
+    function subtract() {
+        
+    }
+
+    function multiply() {
+        
+    }
+
+    function divide() {
+        
+    }
+
+    function dot() {
+        alert(".");
+    }
+
+    function clearDisplay() {
+        document.getElementById("display").innerText = "0";
+    }
+
+    function equal() {
+
+    }
+
+    function addDisplayNumber( number ){
+        let displayValue = document.getElementById("display")
+        if(displayValue.innerText === "0")
+            document.getElementById("display").innerText = number
+        else if(displayValue.innerText.length < 16)
+            document.getElementById("display").innerText += number
+    }
+
+    function zero() {
+        addDisplayNumber("0")
+    }
+
+    function one() {
+        addDisplayNumber("1")
+    }
+
+    function two() {
+        addDisplayNumber("2")
+    }
+
+    function three() {
+        addDisplayNumber("3")
+    }
+
+    function four() {
+        addDisplayNumber("4")
+    }
+
+    function five() {
+        addDisplayNumber("5")
+    }
+
+    function six() {
+        addDisplayNumber("6")
+    }
+
+    function seven() {
+        addDisplayNumber("7")
+    }
+
+    function eight() {
+        addDisplayNumber("8")
+    }
+
+    function nine() {
+        addDisplayNumber("9")
+    }
+
+</script>
