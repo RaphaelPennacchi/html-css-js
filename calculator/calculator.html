@@ -7,157 +7,193 @@
 <body>
    <div class="calculator">
        <div id="display">0</div>
-       <div class="buttons" class=".container">
-           <div>
-                <div>
-                    <button class="keys" type="button" onclick="sum()">+</button>
-                    <button class="keys" type="button" onclick="subtract()">-</button>
-                    <button class="keys" type="button" onclick="multiply()">x</button>
-                    <button class="keys" type="button" onclick="divide()">/</button>
-                </div>
-                <div>
-                    <button class="keys" type="button" onclick="seven()">7</button>
-                    <button class="keys" type="button" onclick="eight()">8</button>
-                    <button class="keys" type="button" onclick="nine()">9</button>
-                </div>
-                <div>
-                    <button class="keys" type="button" onclick="four()">4</button>
-                    <button class="keys" type="button" onclick="five()">5</button>
-                    <button class="keys" type="button" onclick="six()">6</button>
-                </div>
-                <div>
-                    <button class="keys item-a" type="button" onclick="one()">1</button>
-                    <button class="keys" type="button" onclick="two()">2</button>
-                    <button class="keys" type="button" onclick="three()">3</button>
-                </div>
-                <div>
-                    <button class="keys" type="button" onclick="zero()">0</button>
-                    <button class="keys" type="button" onclick="dot()">.</button>
-                    <button class="keys" type="button" onclick="clearDisplay()">C</button>
-                </div>
-           </div>
-           <div>
-               <button id="equal"></button>
-           </div>
+       <div class="container">
+           <div class="item1"><button class="keys" onclick="calculator(this)" data-value="plus">&plus;</button></div>
+           <div class="item2"><button class="keys" onclick="calculator(this)" data-value="minus">&minus;</button></div>
+           <div class="item3"><button class="keys" onclick="calculator(this)" data-value="multiply">&times;</button></div>
+           <div class="item4"><button class="keys" onclick="calculator(this)" data-value="divide">&divide;</button></div>
+           <div class="item5"><button class="keys" onclick="calculator(this)" data-value="7">7</button></div>
+           <div class="item6"><button class="keys" onclick="calculator(this)" data-value="8">8</button></div>
+           <div class="item7"><button class="keys" onclick="calculator(this)" data-value="9">9</button></div>
+           <div class="item8"><button class="keys" onclick="calculator(this)" data-value="4">4</button></div>
+           <div class="item9"><button class="keys" onclick="calculator(this)" data-value="5">5</button></div>
+           <div class="item10"><button class="keys" onclick="calculator(this)" data-value="6">6</button></div>
+           <div class="item11"><button class="keys" onclick="calculator(this)" data-value="1">1</button></div>
+           <div class="item12"><button class="keys" onclick="calculator(this)" data-value="2">2</button></div>
+           <div class="item13"><button class="keys" onclick="calculator(this)" data-value="3">3</button></div>
+           <div class="item14"><button class="keys" onclick="calculator(this)" data-value="0">0</button></div>
+           <div class="item15"><button class="keys" onclick="calculator(this)" data-value=".">.</button></div>
+           <div class="item16"><button class="keys" onclick="calculator(this)" data-value="C">AC</button></div>
+           <div class="item17"><button class="keys" onclick="calculator(this)" data-value="equals">&equals;</button></div>
        </div>
    </div> 
 </body>
 </html>
 
 <style>
+    .calculator {
+        border: none;
+        border-radius: 12px;
+    }
     #display {
-        background-color: #252525;
-        border: 1px #252525 solid; 
-        border-radius: 10px 10px 0px 0px;
+        background-color: #222;
+        color: #fff;
         height: 80px;
         width: 300px;
-        color: white;
-        text-align: right;
         font-size: 33px;
-        vertical-align: middle;
+        text-align: right;
     }
 
     .keys {
-        height: 20px;
-        width: 75px;
-        background-color: lightblue;
-        padding: 0px;
-        border: none;
-        margin: 0;
-        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background-color: #eee;
+        border: 1px #999 solid;
         text-decoration: none;
     }
 
     .container {
         display: grid;
-        grid-template-columns: 50px 50px 50px 50px;
-        grid-template-rows: auto;
-        grid-template-areas: 
-        "key-1 key-1"
-        "key-1 key-1";
+        grid-template-columns: 75px 75px 75px 75px;
+        grid-template-rows: 40px 40px 40px 40px 40px;
+        grid-template-areas:
+        "key-sum key-subtract key-multiply key-divide"
+        "key-7 key-8 key-9 key-equal"
+        "key-4 key-5 key-6 key-equal"
+        "key-1 key-2 key-3 key-equal"
+        "key-0 key-dot key-clear key-equal";
     }
 
-    .item-a {
-        grid-area: key-1;
-    }
-
+    .item1 {grid-area: key-sum;}
+    .item2 {grid-area: key-subtract;}
+    .item3 {grid-area: key-multiply;}
+    .item4 {grid-area: key-divide;}
+    .item5 {grid-area: key-7;}
+    .item6 {grid-area: key-8;}
+    .item7 {grid-area: key-9;}
+    .item8 {grid-area: key-4;}
+    .item9 {grid-area: key-5;}
+    .item10 {grid-area: key-6;}
+    .item11 {grid-area: key-1;}
+    .item12 {grid-area: key-2;}
+    .item13 {grid-area: key-3;}
+    .item14 {grid-area: key-0;}
+    .item15 {grid-area: key-dot;}
+    .item16 {grid-area: key-clear;}
+    .item17 {grid-area: key-equal;}
 </style>
 
 <script>
-    function sum() {
-        
+    var operation = {
+        operation: "",
+        value: "",
+        recent: false
     }
 
-    function subtract() {
-        
+    const calculatorGetDisplayValue = () => {
+        return document.getElementById("display").innerText
     }
 
-    function multiply() {
-        
+    const calculatorSetDisplayValue = (number) => {
+        return document.getElementById("display").innerText = number
     }
 
-    function divide() {
-        
+    const calculatorSetOperation = (op) => {
+        operation.operation = op;
+        operation.value = calculatorGetDisplayValue()
+        operation.recent = true
+        console.log(operation)
     }
 
-    function dot() {
-        alert(".");
+    const calculatorClearOperation = () => {
+        operation.operation = ""
+        operation.value = ""
+        operation.recent = false
     }
 
-    function clearDisplay() {
-        document.getElementById("display").innerText = "0";
+    const calculatorOperate = () => {
+        switch (operation.operation) {
+            case "plus":
+                calculatorSetDisplayValue( parseFloat(operation.value) + parseFloat(calculatorGetDisplayValue()))
+                break;
+            case "minus":
+                calculatorSetDisplayValue( parseFloat(operation.value) - parseFloat(calculatorGetDisplayValue()))
+                break;
+            case "multiply":
+                calculatorSetDisplayValue( parseFloat(operation.value) * parseFloat(calculatorGetDisplayValue()))
+                break;
+            case "divide":
+                calculatorSetDisplayValue( parseFloat(operation.value) / parseFloat(calculatorGetDisplayValue()))
+                break;
+        }
     }
 
-    function equal() {
-
+    const addDisplayData = (number) => {
+        var displayData = document.getElementById("display")
+        if(displayData.innerText === "0"){
+            displayData.innerText = number
+        }
+        else if(displayData.innerText.length < 8){
+            displayData.innerText += number
+        }
     }
 
-    function addDisplayNumber( number ){
-        let displayValue = document.getElementById("display")
-        if(displayValue.innerText === "0")
-            document.getElementById("display").innerText = number
-        else if(displayValue.innerText.length < 16)
-            document.getElementById("display").innerText += number
+    const clearDisplayData = () => {
+        document.getElementById("display").innerText = "0"
     }
 
-    function zero() {
-        addDisplayNumber("0")
-    }
-
-    function one() {
-        addDisplayNumber("1")
-    }
-
-    function two() {
-        addDisplayNumber("2")
-    }
-
-    function three() {
-        addDisplayNumber("3")
-    }
-
-    function four() {
-        addDisplayNumber("4")
-    }
-
-    function five() {
-        addDisplayNumber("5")
-    }
-
-    function six() {
-        addDisplayNumber("6")
-    }
-
-    function seven() {
-        addDisplayNumber("7")
-    }
-
-    function eight() {
-        addDisplayNumber("8")
-    }
-
-    function nine() {
-        addDisplayNumber("9")
+    const calculator = (data) => {
+        switch(data.getAttribute("data-value")){
+            case("C"):
+                clearDisplayData()
+                calculatorClearOperation()
+                break;
+            case("plus"):
+                calculatorSetOperation("plus")
+                break;
+            case("minus"):
+                calculatorSetOperation("minus")
+                break;
+            case("multiply"):
+                calculatorSetOperation("multiply")
+                break;
+            case("divide"):
+                calculatorSetOperation("divide")
+                break;
+            case("equals"):
+                calculatorOperate()
+                break;
+            case("0"):
+                addDisplayData("0")
+                break;
+            case("1"):
+                addDisplayData("1")
+                break;
+            case("2"):
+                addDisplayData("2")
+                break;
+            case("3"):
+                addDisplayData("3")
+                break;
+            case("4"):
+                addDisplayData("4")
+                break;
+            case("5"):
+                addDisplayData("5")
+                break;
+            case("6"):
+                addDisplayData("6")
+                break;
+            case("7"):
+                addDisplayData("7")
+                break;
+            case("8"):
+                addDisplayData("8")
+                break;
+            case("9"):
+                addDisplayData("9")
+                break;
+        }
     }
 
 </script>
