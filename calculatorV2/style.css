@@ -1,0 +1,77 @@
+:root {
+    --gray-blue: #627894;
+    --light-gray-blue: #A0AEC1;
+    --blue: #466289;
+    --light-blue: #DBE8F9;
+    --orange: #FA6121;
+    --light-orange: #FFB739;
+}
+
+body {
+    display: grid;
+    height: 90%;
+}
+
+button:hover {
+    background-color: var(--light-orange);
+}
+
+#display {
+    height: 150px;
+    grid-column: span 4;
+    background-color: var(--blue);
+    border: solid black;
+    border-width: 2px 2px 1px 2px;
+    border-radius: 10px 10px 0 0;
+    font-size: 36px;
+    text-align: right;
+    padding-right: 5px;
+    line-height: 150px;
+}
+
+.center {
+    margin: auto;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 105px);
+}
+
+.key {
+    background-color: var(--light-blue);
+    height: 75px;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.key1,
+.key5,
+.key9,
+.key13 {
+    border-width: 1px 1px 1px 2px;
+}
+
+.key4,
+.key8,
+.key12,
+.key16 {
+    border-width: 1px 2px 1px 1px;
+}
+
+.key17 {
+    border-width: 1px 1px 2px 2px;
+    grid-column: span 2;
+    border-bottom-left-radius: 10px;
+}
+
+.key18 {
+    border-width: 1px 1px 2px 1px;
+}
+
+.key19 {
+    border-width: 1px 2px 2px 1px;
+    border-bottom-right-radius: 10px;
+}
+
