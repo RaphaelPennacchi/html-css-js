@@ -4,8 +4,6 @@
 
 [Roadmap](https://roadmap.sh/frontend)
 
-[OSSU](https://github.com/ossu/computer-science)
-
 [Some projects](https://dev.to/binconsole/curated-list-of-project-based-tutorials-project-based-learning-frontend-3c8l)
 
 ## Roadmap
